@@ -108,7 +108,7 @@ Open repository with frontend and build the app for production to the build fold
 
   cd remme-block-explorer-frontend
   npm install
-  npm build
+  npm run build
 
 Run docker container with backend. ::
 
