@@ -1,0 +1,11 @@
+.info-link {
+  font-size: 40px;
+  position: fixed;
+  right: 35px; 
+  bottom: 55px;
+  z-index: 100;
+}
+
+.info-link i {
+  color: #6527dd;
+}

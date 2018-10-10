@@ -7,6 +7,7 @@ import Transactions from './Transactions';
 import TransactionDetails from './TransactionDetails';
 import AddressDetails from './AddressDetails';
 import NotFound from './NotFound';
+import HowToUse from './HowToUse';
 
 export {
   Home,
@@ -17,5 +18,6 @@ export {
   TransactionDetails,
   AddressDetails,
   NotFound,
-  Feedback
+  Feedback,
+  HowToUse
 };

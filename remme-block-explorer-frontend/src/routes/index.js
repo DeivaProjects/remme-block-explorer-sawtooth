@@ -10,7 +10,8 @@ import {
   BlockDetails,
   Transactions,
   TransactionDetails,
-  AddressDetails,
+  AddressDetails, 
+  HowToUse,
   NotFound
 } from '../pages';
 
@@ -26,6 +27,7 @@ export default () => (
         <Route exact path="/transactions" component={Transactions} />
         <Route exact path="/transactions/:id" component={TransactionDetails}/>
         <Route exact path="/address/:id" component={AddressDetails}/>
+        <Route exact path="/how-to-use" component={HowToUse} />
         <Route component={NotFound}/>
       </Switch>
     </App>

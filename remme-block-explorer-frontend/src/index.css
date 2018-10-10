@@ -150,3 +150,7 @@ margin-bottom: 1px;
 .remme-stat-list .ant-list-item-content {
   display: block;
 }
+
+.ant-table-tbody > tr > td {
+    word-break: normal;
+}
