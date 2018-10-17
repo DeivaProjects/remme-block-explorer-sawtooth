@@ -85,7 +85,8 @@ body {
 }
 
 .ant-menu-dark.ant-menu-horizontal {
-  float: left;
+  display: inline-block;
+  vertical-align: bottom;
   line-height: 64px;
 }
 
