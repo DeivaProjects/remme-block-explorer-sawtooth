@@ -91,11 +91,8 @@ Setup
 
 Requirements
 -----------------
-* Nginx >= 1.13.5
-* Nodejs >= 8.0.0
-* Docker >= 17.05.0
+* docker >= 17.05.0
 * docker-compose >= 1.18.0
-* build-essential
 
 Installation
 -----------------
@@ -104,18 +101,16 @@ Clone REMME blockexplorer repository into a directory on your server. ::
 
   git clone https://github.com/Remmeauth/remme-block-explorer.git
 
-Open repository with frontend and build the app for production to the build folder. ::
+  Open the repository and create a certificates folder. ::
 
-  cd remme-block-explorer-frontend
-  npm install
-  npm build
+    cd remme-block-explorer
+    mkdir certificates
 
-Run docker container with backend. ::
+You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
 
-  cd remme-block-explorer-backend
-  docker-compose up
+Change ngnix.conf using the config file, replace directories path and server domain name.
 
-If you are going to connect blockexplore to your own node you should cnange "NODE_ADDRESS" in .env file:
+If you are going to connect blockexplorer to your own node you should cnange "NODE_ADDRESS" in .env file:
 
   | # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
   | NODE_ADDRESS="YOUR_NODE_ADDRESS"
@@ -123,6 +118,6 @@ If you are going to connect blockexplore to your own node you should cnange "NOD
   | # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
   | PORT=
 
-Change ngnix.conf using the config file, replace directories path and server domain name. Then Restart nginx. ::
+Lastly, run docker-compose up and Compose will start and run app. ::
 
-  systemctl restart ngnix
+  docker-compose up
