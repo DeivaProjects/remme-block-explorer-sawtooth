@@ -12,7 +12,7 @@ const NavigationItems = [
     icon: 'home',
     type: 'simple',
     key: 1,
-  }, {
+  },{
     title: 'Blockchain',
     icon: 'bars',
     type: 'list',
@@ -62,6 +62,13 @@ const NavigationItems = [
           link: "https://docs.remme.io/",
           key: 3
         }]
+      },{
+        title: 'How to use',
+        link: '/how-to-use',
+        icon: 'question-circle',
+        type: 'simple',
+        style: 'default',
+        key: 9,
       },{
         title: 'Join Tech Community',
         link: 'https://remme.io/community#join-tech-community',

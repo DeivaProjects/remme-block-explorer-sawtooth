@@ -4,17 +4,15 @@ import { Layout, Icon, Input } from 'antd';
 
 import {logo} from './images';
 
-import { Navigation, Social, InfoLink } from './components'
+import { Navigation, Social } from './components'
 const { Header, Sider, Content } = Layout;
 const Search = Input.Search;
 
 class App extends Component {
   render() {
-    const { location } = this.props
     return (
       <Layout>
         <Layout>
-          { location.pathname !== "/how-to-use" ? <InfoLink /> : null }
           <Header>
             <div className="ant-layout-header-wr">
               <div className="logo">
