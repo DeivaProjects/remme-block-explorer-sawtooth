@@ -9,7 +9,7 @@ services:
     volumes:
      - ./nginx.conf:/etc/nginx/nginx.conf:ro
      - ./certificates:/etc/nginx/certificates:ro
-     - ./remme-block-explorer-backend/build:/root/build
+     - ./remme-block-explorer-frontend/build:/root/build
     ports:
      - 80:80
      - 443:443
@@ -21,4 +21,3 @@ services:
     container_name: remme_block_explorer
     depends_on:
       - nginx_block_explorer
-
