@@ -118,6 +118,8 @@ If you are going to connect blockexplorer to your own node you should cnange "NO
   | # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
   | PORT=
 
+*If your node was installed on localhost you should use the local IP address instead "localhost".
+
 Lastly, run docker-compose up and Compose will start and run app. ::
 
   docker-compose up
