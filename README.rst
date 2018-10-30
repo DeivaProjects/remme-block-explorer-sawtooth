@@ -101,10 +101,10 @@ Clone REMME blockexplorer repository into a directory on your server. ::
 
   git clone https://github.com/Remmeauth/remme-block-explorer.git
 
-  Open the repository and create a certificates folder. ::
+Open the repository and create a certificates folder. ::
 
-    cd remme-block-explorer
-    mkdir certificates
+  cd remme-block-explorer
+  mkdir certificates
 
 You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
 
