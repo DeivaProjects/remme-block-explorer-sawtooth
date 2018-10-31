@@ -22,7 +22,7 @@ Blocks are sorted by block_num and hold batches of transactions. This batch incl
 +-----------------------+-----------------------------------------------------+
 | signer_public_key     | Signer's public key                                 |
 +-----------------------+-----------------------------------------------------+
-| state_root_hash       | Id of current block                                 |
+| state_root_hash       | Points to version of the tree                       |
 +-----------------------+-----------------------------------------------------+
 | timestamp             | The time this block was created                     |
 |                       | and was included in the blockchain.                 |
@@ -110,7 +110,7 @@ You have to upload the certificate and private key to this folder (certificate.c
 
 Change ngnix.conf using the config file, replace directories path and server domain name.
 
-If you are going to connect blockexplorer to your own node you should cnange "NODE_ADDRESS" in .env file:
+If you are going to connect blockexplorer to your own node you should change "NODE_ADDRESS" in .env file:
 
   | # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
   | NODE_ADDRESS="YOUR_NODE_ADDRESS"
