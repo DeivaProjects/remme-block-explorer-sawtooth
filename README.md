@@ -44,3 +44,45 @@ Key parameters of transactions:
 | validFrom           | These field indicates the validity period - from                                                                                                                                                                                                                                                                                                                |
 | validTo             | These field indicates the validity period - to.                                                                                                                                                                                                                                                                                                                 |
 | address             | Address of public key or REMME account address.                                                                                                                                                                                                                                                                                                                 |
+
+# Setup (ubuntu)
+
+### Requirements
+
+- docker >= 17.05.0
+- docker-compose >= 1.18.0
+
+### Installation
+
+Clone REMME blockexplorer repository into a directory on your server.
+
+```sh
+$ git clone https://github.com/Remmeauth/remme-block-explorer.git
+```
+
+Open the repository and create a certificates folder.
+
+```sh
+$ cd remme-block-explorer
+$ mkdir certificates
+```
+
+You have to upload the certificate and private key to this folder (certificate.crt, private.key). These files are needed to configure ssl.
+
+Change ngnix.conf using the config file, replace directories path and server domain name.
+
+If you are going to connect blockexplorer to your own node you should change "NODE_ADDRESS" in .env file:
+
+```sh
+ # NODE ADDRESS (IF EMPTY WIL BE USE LOCALHOST)
+ NODE_ADDRESS="YOUR_NODE_ADDRESS"
+
+ # SERVER PORT (IF EMPTY WILL BE RUN ON 3000)
+ PORT=
+```
+
+*If your node was installed on localhost you should use the local IP address instead "localhost".
+Lastly, run docker-compose up and Compose will start and run app.
+```sh
+$ docker-compose up
+```
