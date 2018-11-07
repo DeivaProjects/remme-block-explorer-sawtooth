@@ -28,7 +28,7 @@ Key parameters of transactions:
 | Option             | Explanation                                                                                                                      |
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | TXID               | Id of current transaction                                                                                                        |
-| Header             |                                                                                                                                  |
+| Header                                                                                                                                                |
 | batcher_public_key | Public key for the client who added this transaction to a batch                                                                  |
 | family_name        | The family name correlates to the transaction<br>processor's family name that this transaction<br>can be processed on. Families: |
 |                    |                                                                                                                                  |
