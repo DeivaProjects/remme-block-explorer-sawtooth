@@ -2,7 +2,7 @@
 
 ### Overview
 
-[REMME Block Explorer](https://blockexplorer.remme.io/) is an open source web tool that allows to view information about blocks and transactions on the REMME blockchain. Home page of the Block Explorer contains a list of the top 10 blocks and transactions. Pages [View Blocks](https://blockexplorer.remme.io/blocks/) and [View Txns](https://blockexplorer.remme.io/transactions/) contain lists with all items.
+[REMME Block Explorer](https://blockexplorer.remme.io/) is an open source web tool that allows to view information about blocks and transactions on the REMME blockchain. Home page of the Block Explorer contains a list of the top 10 blocks and transactions. Pages [View Blocks](https://blockexplorer.remme.io/blocks/) and [View Txns](https://blockexplorer.remme.io/transactions/) contain lists with all items. 
 
 ### Blocks
 
