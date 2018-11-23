@@ -1,3 +1,4 @@
+
 import express from 'express';
 import Remme from 'remme';
 import { base64ToArrayBuffer } from "remme-utils";
@@ -38,9 +39,7 @@ function prepareTransaction(data) {
     if (excludeFamilyNames.includes(item.header.family_name)) {
       return prev;
     }
-    if (item.transactionProtobuf && item.protobuf) {
-      item.data = item.protobuf.decode(item.transactionProtobuf.decode(base64ToArrayBuffer(item.payload)).data);
-    }
+    item = remme.blockchainInfo.parseTransactionPayload(item);
     return [
       ...prev,
       item
@@ -63,15 +62,63 @@ const initGetRouter = (method) => {
   return router;
 };
 
-const transactions = initGetRouter("Transactions");
+const initBlockInfoRouter = () => {
+  const router = express.Router();
+
+  router.get('/', async (req, res) => {
+    const { limit, head, start } = req.query;
+    const response = await remme.blockchainInfo.getBlockInfo({ 
+      limit: parseInt(limit),
+      start: parseInt(start),
+      head
+    });
+    res.json(response);
+  });
+
+  return router;
+};
+
+const initTransactionRouter = () => {
+  const router = express.Router();
+
+  router.get('/', async (req, res) => {
+    const { limit, head, start } = req.query;
+    const response = await remme.blockchainInfo.getTransactions({ limit, head, start });
+    response.data = response.data.reduce((prev, item) => {
+      if (excludeFamilyNames.includes(item.header.family_name)) {
+        return prev;
+      }
+
+      const { payload, type } = remme.blockchainInfo.parseTransactionPayload(item);
+      return [
+        ...prev,
+        {
+          ...item,
+          payload,
+          type
+        },
+      ]
+    }, []);
+    res.json(response);
+  });
+
+  return router;
+};
+
+const transactions = initTransactionRouter();
 const blocks = initGetRouter("Blocks");
 const state = initGetRouter("State");
-const blockInfo = initGetRouter("BlockInfo");
+const blockInfo = initBlockInfoRouter();
 
 transactions.get('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await remme.blockchainInfo.getTransactionById(id);
-  response.data = prepareTransaction([ response.data ])[0];
+  const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
+  response.data = { 
+    ...response.data,
+    payload,
+    type
+  }
   res.json(response);
 });
 
@@ -86,7 +133,7 @@ state.get('/:address', async (req, res) => {
   const { address } = req.params;
   try {
     const response = await remme.blockchainInfo.getStateByAddress(address);
-    response.addressParse = response.protobuf.decode(base64ToArrayBuffer(response.data));
+    response.addressParse = remme.blockchainInfo.parseStateData({ ...response, address });
     res.json(response);
   } catch(e) {
     res.json({ error: e.message });

@@ -35,7 +35,7 @@ export const getTransactionsView = (transactions) => {
       title: "txid #",
       value: curr.header_signature,
       link: `/transactions/${curr.header_signature}`,
-      type: curr.transactionType,
+      type: curr.type,
     }]
   }, []);
 };
@@ -44,6 +44,7 @@ export const getPayloadView = (payload) => {
   if (typesToMethods[payload.type] && "address" in typesToMethods[payload.type] && !payload.address) {
     payload.address = payload;
   }
+  
   return Object.entries(payload).reduce((prev, [key, value]) => {
     return [
       ...prev,

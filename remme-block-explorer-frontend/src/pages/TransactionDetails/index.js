@@ -35,7 +35,7 @@ class TransactionDetails extends Component {
 
     if (transaction) {
       data.Header =  objToArray(transaction.header, this.filter);
-      data.Payload = getPayloadView({ type: transaction.transactionType, ...transaction.data });
+      data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload });
     }
 
     return (

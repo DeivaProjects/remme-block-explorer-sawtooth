@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 class CreateList extends Component {
   render() {
     const { title, data, link, content } = this.props;
-    console.log(data);
     return (
       <Fragment>
         <List
