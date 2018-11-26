@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { map, mergeMap } from 'rxjs/operators';
 import { combineEpics, ofType } from 'redux-observable';
 

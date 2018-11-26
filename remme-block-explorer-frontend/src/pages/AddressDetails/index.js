@@ -40,7 +40,7 @@ class AddressDetail extends Component {
 
     if (address) {
       if (!address.error) {
-        data.Payload = getPayloadView({type: address.addressType, ...address.addressParse});
+        data.payload = getPayloadView({type: address.addressParse.type, ...address.addressParse.data});
       } else {
         data["No Data"] = [{ value: address.error }]
       }

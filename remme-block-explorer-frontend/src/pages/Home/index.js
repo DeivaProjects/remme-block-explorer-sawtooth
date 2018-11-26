@@ -11,7 +11,7 @@ import {
   BlocksTable,
   TransactionsTable,
   CardWrap
-} from '../../components'
+} from '../../components';
 
 import './style.css';
 import api from "../../config/api";

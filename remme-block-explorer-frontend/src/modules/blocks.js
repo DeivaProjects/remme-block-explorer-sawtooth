@@ -40,9 +40,10 @@ const blocksFetchInfoEpic = action$ => action$.pipe(
   mergeMap(
     action => {
       const params = {
-        start: action.payload[0].header.block_num,
+        start: parseInt(action.payload[0].header.block_num),
         limit: action.payload.length - 1
       };
+
       return api.getBlockInfoPipe({ params }).pipe(
         map(data => blocksInfo(data.response))
       )

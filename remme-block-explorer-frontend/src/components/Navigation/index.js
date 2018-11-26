@@ -82,7 +82,7 @@ const NavigationItems = [
         key: 5,
         items: [{
             title: 'How To Use',
-            link: "https://docs.remme.io/remme-block-explorer/docs/",
+            link: "https://docs.remme.io/md/remme-block-explorer",
             key: 1
           },{
             title: 'Claim Tokens',

@@ -8,7 +8,7 @@ const getAddressFromData = (familyName, data) => `${sha512(familyName).slice(0, 
 const getLinkWithAddress = address => <Link to={`/address/${address}`}>{address}</Link>;
 
 const getValue = (type, field, value) => {
-  return typesToMethods[type] && typesToMethods[type][field] ? typesToMethods[type][field](value) : value.toString();
+  return typesToMethods[type] && typesToMethods[type][field] ? typesToMethods[type][field](value) : value;
 };
 
 export const typesToMethods = {

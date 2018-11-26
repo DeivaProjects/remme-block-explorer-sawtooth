@@ -43,7 +43,6 @@ class BlockInfo extends Component {
 
   render() {
     const { data } = this.state;
-    console.log(data, this.props);
     return (
       <Fragment>
         { data.map( item => (
