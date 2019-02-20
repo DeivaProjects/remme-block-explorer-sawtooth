@@ -44,7 +44,7 @@ export const getPayloadView = (payload) => {
   if (typesToMethods[payload.type] && "address" in typesToMethods[payload.type] && !payload.address) {
     payload.address = payload;
   }
-  
+
   return Object.entries(payload).reduce((prev, [key, value]) => {
     return [
       ...prev,

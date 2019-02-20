@@ -7,7 +7,8 @@ import { config } from "dotenv";
 config();
 const remme = new Remme.Client({
   networkConfig: {
-    nodeAddress: process.env.NODE_ADDRESS || "localhost"
+    nodeAddress: process.env.NODE_ADDRESS || "localhost",
+    sslMode: false
   }
 });
 
@@ -67,7 +68,7 @@ const initBlockInfoRouter = () => {
 
   router.get('/', async (req, res) => {
     const { limit, head, start } = req.query;
-    const response = await remme.blockchainInfo.getBlockInfo({ 
+    const response = await remme.blockchainInfo.getBlockInfo({
       limit: parseInt(limit),
       start: parseInt(start),
       head
@@ -114,7 +115,7 @@ transactions.get('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await remme.blockchainInfo.getTransactionById(id);
   const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
-  response.data = { 
+  response.data = {
     ...response.data,
     payload,
     type

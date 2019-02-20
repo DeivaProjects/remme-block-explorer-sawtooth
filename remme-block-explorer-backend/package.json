@@ -19,14 +19,16 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "nodemon": "^1.17.5",
-    "remme": "^0.5.0-alfa",
+    "remme": "0.7.1",
     "request": "^2.87.0"
   },
   "babel": {
     "presets": [
       "env"
     ],
-    "plugins": ["transform-object-rest-spread"]
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
   },
   "devDependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0"
