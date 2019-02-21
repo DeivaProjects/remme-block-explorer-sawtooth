@@ -2,6 +2,7 @@
 import express from 'express';
 import Remme from 'remme';
 import { base64ToArrayBuffer } from "remme-utils";
+import { RSASignaturePadding, KeyType, RemmeKeys } from "remme-keys";
 import { config } from "dotenv";
 
 config();
@@ -59,7 +60,6 @@ const initGetRouter = (method) => {
     }
     res.json(response);
   });
-
   return router;
 };
 
@@ -75,7 +75,6 @@ const initBlockInfoRouter = () => {
     });
     res.json(response);
   });
-
   return router;
 };
 
@@ -111,15 +110,37 @@ const blocks = initGetRouter("Blocks");
 const state = initGetRouter("State");
 const blockInfo = initBlockInfoRouter();
 
+const getPubKey = async (payload) => {
+    const keyType = payload.configuration;
+    const { key: publicKey } = payload[keyType];
+    const keys = await RemmeKeys.construct({
+        keyType,
+        publicKey,
+    });
+    return keys;
+}
+
 transactions.get('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await remme.blockchainInfo.getTransactionById(id);
   const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
+
+  let PubKey = {}
+  if (type == "store public key") {
+    const keys = await getPubKey(payload)
+    PubKey.keyType = keys.keyType
+    PubKey.publicKey = keys.publicKeyHex
+    PubKey.publicKeyAddress = keys.address;
+  }
+
+
   response.data = {
     ...response.data,
+    PubKey,
     payload,
-    type
+    type,
   }
+
   res.json(response);
 });
 

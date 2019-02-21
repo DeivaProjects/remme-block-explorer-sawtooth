@@ -41,9 +41,14 @@ export const getTransactionsView = (transactions) => {
 };
 
 export const getPayloadView = (payload) => {
-  if (typesToMethods[payload.type] && "address" in typesToMethods[payload.type] && !payload.address) {
-    payload.address = payload;
-  }
+  // if (typesToMethods[payload.type] && "address" in typesToMethods[payload.type] && !payload.address) {
+  //   payload.address = payload;
+  // }
+  
+  // DELETE invalid fields
+  delete payload.rsa
+  delete payload.ed25519
+  delete payload.ecdsa
 
   return Object.entries(payload).reduce((prev, [key, value]) => {
     return [

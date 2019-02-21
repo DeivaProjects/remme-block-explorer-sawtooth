@@ -8,14 +8,6 @@ const getAddressFromData = (familyName, data) => `${sha512(familyName).slice(0, 
 const getLinkWithAddress = address => <Link to={`/address/${address}`}>{address}</Link>;
 
 const getValue = (type, field, value) => {
-  console.log("===>" + type + "===>" + field);
-  console.log(value);
-  if (field == "address") {
-    return "--"
-  }
-  if (field == "rsa") {
-    return "--"
-  }
   return typesToMethods[type] && typesToMethods[type][field] ? typesToMethods[type][field](value) : value;
 };
 
@@ -34,7 +26,10 @@ export const typesToMethods = {
     </Fragment>),
     validFrom: (value) => moment.unix(value).format("YYYY/MM/DD HH:mm:ss"),
     validTo: (value) => moment.unix(value).format("YYYY/MM/DD HH:mm:ss"),
-    address: item => getLinkWithAddress(getAddressFromData("pub_key", item.publicKey)),
+    rsa: (value) => value.key,
+    ecdsa: (value) => value.key,
+    ed25519: (value) => value.key,
+    publicKeyAddress: (value) => getLinkWithAddress(value),
   },
   "revoke public key": {
     address: address => getLinkWithAddress(address),

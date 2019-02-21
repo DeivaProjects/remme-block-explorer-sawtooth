@@ -34,8 +34,9 @@ class TransactionDetails extends Component {
     const data = {};
 
     if (transaction) {
+      const PubKey = transaction.PubKey || {};
       data.Header =  objToArray(transaction.header, this.filter);
-      data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload });
+      data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload, ...PubKey });
     }
 
     return (

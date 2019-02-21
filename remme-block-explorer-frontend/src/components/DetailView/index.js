@@ -4,6 +4,7 @@ import { Divider, Spin } from "antd";
 import { CardWrap, CreateList } from "../../components";
 
 class DetailView extends Component {
+
   render() {
     const { title, data, loading } = this.props;
     return (

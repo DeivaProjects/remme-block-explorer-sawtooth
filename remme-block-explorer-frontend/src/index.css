@@ -155,3 +155,11 @@ margin-bottom: 1px;
 .ant-table-tbody > tr > td {
     word-break: normal;
 }
+
+.ant-list-item-meta-description {
+      word-break: break-word;
+}
+
+.ant-list-item {
+  display: block;
+}
