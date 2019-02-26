@@ -84,16 +84,20 @@ const initTransactionRouter = () => {
   router.get('/', async (req, res) => {
     const { limit, head, start } = req.query;
     const response = await remme.blockchainInfo.getTransactions({ limit, head, start });
-    response.data = response.data.reduce((prev, item) => {
+    response.data = await response.data.reduce(async(promise, item) => {
+      const prev = await promise;
+
       if (excludeFamilyNames.includes(item.header.family_name)) {
         return prev;
       }
 
       const { payload, type } = remme.blockchainInfo.parseTransactionPayload(item);
+      const PubKey = await getPubKey(type, payload);
       return [
         ...prev,
         {
           ...item,
+          PubKey,
           payload,
           type
         },
@@ -105,19 +109,28 @@ const initTransactionRouter = () => {
   return router;
 };
 
+
 const transactions = initTransactionRouter();
 const blocks = initGetRouter("Blocks");
 const state = initGetRouter("State");
 const blockInfo = initBlockInfoRouter();
 
-const getPubKey = async (payload) => {
-    const keyType = payload.configuration;
-    const { key: publicKey } = payload[keyType];
-    const keys = await RemmeKeys.construct({
-        keyType,
-        publicKey,
-    });
-    return keys;
+const getPubKey = async (type, payload) => {
+    if (type == "store public key") {
+      const keyType = payload.configuration;
+      const { key: publicKey } = payload[keyType];
+      const keys = await RemmeKeys.construct({
+          keyType,
+          publicKey,
+      });
+
+      return {
+        keyType: keys.keyType,
+        publicKey: keys.publicKeyHex,
+        publicKeyAddress: keys.address
+      };
+    }
+    return {};
 }
 
 transactions.get('/:id', async (req, res) => {
@@ -125,14 +138,7 @@ transactions.get('/:id', async (req, res) => {
   const response = await remme.blockchainInfo.getTransactionById(id);
   const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
 
-  let PubKey = {}
-  if (type == "store public key") {
-    const keys = await getPubKey(payload)
-    PubKey.keyType = keys.keyType
-    PubKey.publicKey = keys.publicKeyHex
-    PubKey.publicKeyAddress = keys.address;
-  }
-
+  const PubKey = await getPubKey(type, payload);
 
   response.data = {
     ...response.data,

@@ -40,15 +40,19 @@ export const getTransactionsView = (transactions) => {
   }, []);
 };
 
+
+const blockToNotShow = [
+  "rsa",
+  "ed25519",
+  "ecdsa",
+];
+
 export const getPayloadView = (payload) => {
   // if (typesToMethods[payload.type] && "address" in typesToMethods[payload.type] && !payload.address) {
   //   payload.address = payload;
   // }
-  
-  // DELETE invalid fields
-  delete payload.rsa
-  delete payload.ed25519
-  delete payload.ecdsa
+
+  blockToNotShow.forEach(function(key) { delete payload[key] });
 
   return Object.entries(payload).reduce((prev, [key, value]) => {
     return [
