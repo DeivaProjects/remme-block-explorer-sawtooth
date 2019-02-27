@@ -40,7 +40,6 @@ export const getTransactionsView = (transactions) => {
   }, []);
 };
 
-
 const blockToNotShow = [
   "rsa",
   "ed25519",

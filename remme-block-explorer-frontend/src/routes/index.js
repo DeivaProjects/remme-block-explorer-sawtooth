@@ -10,7 +10,7 @@ import {
   BlockDetails,
   Transactions,
   TransactionDetails,
-  AddressDetails, 
+  AddressDetails,
   HowToUse,
   NotFound
 } from '../pages';
