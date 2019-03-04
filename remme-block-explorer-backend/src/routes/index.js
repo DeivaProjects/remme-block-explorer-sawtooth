@@ -116,6 +116,7 @@ const state = initGetRouter("State");
 const blockInfo = initBlockInfoRouter();
 
 const getPubKey = async (type, payload) => {
+
     if (type == "store public key") {
       const keyType = payload.configuration;
       const { key: publicKey } = payload[keyType];
@@ -123,11 +124,22 @@ const getPubKey = async (type, payload) => {
           keyType,
           publicKey,
       });
-
       return {
         keyType: keys.keyType,
         publicKey: keys.publicKeyHex,
         publicKeyAddress: keys.address
+      };
+    } else if (type == "store and pay public key") {
+      const keyType = payload.pubKeyPayload.configuration;
+      const { key: publicKey } = payload.pubKeyPayload[keyType];
+      const keys = await RemmeKeys.construct({
+          keyType,
+          publicKey,
+      });
+      return {
+        keyType: keys.keyType,
+        publicKey: keys.publicKeyHex,
+        publicKeyAddress: keys.address,
       };
     }
     return {};
@@ -137,7 +149,6 @@ transactions.get('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await remme.blockchainInfo.getTransactionById(id);
   const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
-
   const PubKey = await getPubKey(type, payload);
 
   response.data = {

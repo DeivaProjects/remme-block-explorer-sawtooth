@@ -36,7 +36,12 @@ class TransactionDetails extends Component {
     if (transaction) {
       const PubKey = transaction.PubKey || {};
       data.Header =  objToArray(transaction.header, this.filter);
-      data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload, ...PubKey });
+      if (transaction.type == "store and pay public key") {
+        data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload.pubKeyPayload, ...PubKey });
+      } else {
+        data.Payload = getPayloadView({ type: transaction.type, ...transaction.payload, ...PubKey });
+      }
+
     }
 
     return (

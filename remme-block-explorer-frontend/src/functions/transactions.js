@@ -15,6 +15,22 @@ export const typesToMethods = {
   "transfer token": {
     addressTo: value => getLinkWithAddress(value)
   },
+  "store and pay public key": {
+    publicKey: (value) => (<Fragment>
+      {value.split(/(?:\r\n|\r|\n)/g).map(item => (
+        <Fragment key={item}>
+          {item}
+          <br/>
+        </Fragment>
+      ))}
+    </Fragment>),
+    validFrom: (value) => moment.unix(value).format("YYYY/MM/DD HH:mm:ss"),
+    validTo: (value) => moment.unix(value).format("YYYY/MM/DD HH:mm:ss"),
+    rsa: (value) => value.key,
+    ecdsa: (value) => value.key,
+    ed25519: (value) => value.key,
+    publicKeyAddress: (value) => getLinkWithAddress(value),
+  },
   "store public key": {
     publicKey: (value) => (<Fragment>
       {value.split(/(?:\r\n|\r|\n)/g).map(item => (
