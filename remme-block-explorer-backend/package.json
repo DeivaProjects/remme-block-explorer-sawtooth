@@ -19,7 +19,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "nodemon": "^1.17.5",
-    "remme": "0.7.3",
+    "remme": "1.0.4",
     "request": "^2.87.0"
   },
   "babel": {

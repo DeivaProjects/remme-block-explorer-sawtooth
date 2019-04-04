@@ -16,7 +16,11 @@ const remme = new Remme.Client({
 const excludeFamilyNames = [
   "sawtooth_settings",
   "sawtooth_validator_registry",
-  "block_info"
+  "block_info",
+
+  "consensus_account",
+  "obligatory_payment",
+  "bet",
 ];
 
 function prepareTransaction(data) {
@@ -90,8 +94,7 @@ const initTransactionRouter = () => {
       if (excludeFamilyNames.includes(item.header.family_name)) {
         return prev;
       }
-
-      const { payload, type } = remme.blockchainInfo.parseTransactionPayload(item);
+      const { payload, type } = parsePayload(item);
       const PubKey = await getPubKey(type, payload);
       return [
         ...prev,
@@ -145,19 +148,29 @@ const getPubKey = async (type, payload) => {
     return {};
 }
 
+
+const parsePayload = (data) => {
+  try {
+    return remme.blockchainInfo.parseTransactionPayload(data);
+  } catch (e) {
+    return {
+      payload: {data: e.message},
+      type: data.header.family_name
+    }
+  }
+}
+
 transactions.get('/:id', async (req, res) => {
   const { id } = req.params;
   const response = await remme.blockchainInfo.getTransactionById(id);
-  const { payload, type } = remme.blockchainInfo.parseTransactionPayload(response.data);
+  const { payload, type } = parsePayload(response.data);
   const PubKey = await getPubKey(type, payload);
-
   response.data = {
     ...response.data,
     PubKey,
     payload,
     type,
   }
-
   res.json(response);
 });
 

@@ -58,6 +58,9 @@ export const typesToMethods = {
   "approve atomic swap": {
     address: item => getLinkWithAddress(getAddressFromData("AtomicSwap", item.swapId))
   },
+  "set bet": {
+    max: (value) => value.toString()
+  },
   "expire atomic swap": {
     address: item => getLinkWithAddress(getAddressFromData("AtomicSwap", item.swapId))
   },
