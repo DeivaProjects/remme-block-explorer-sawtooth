@@ -38,7 +38,7 @@ class Home extends Component {
     const { blockNum, lastBlockTime } = this.props;
     return (
       <Fragment>
-        <CardWrap title="REMME Network Stats">
+        <CardWrap title="Remme Network Stats">
           <Row gutter={16}>
             <Col span={8}>
               <ReactPlaceholder ready={ready} customPlaceholder={<TokenInfoPlaceHolder />}>

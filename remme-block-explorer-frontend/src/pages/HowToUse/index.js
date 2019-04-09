@@ -106,7 +106,7 @@ const dataSource2 = [{
 }, {
   key: '18',
   option: 'address',
-  explanation: 'Address of public key or REMME account address.',
+  explanation: 'Address of public key or Remme account address.',
 }];
 
 const columns = [{
@@ -126,14 +126,14 @@ const NotFound = props => (
     <div className="section">
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "0 20px"  }}>
         <h1 className="tac">Welcome!</h1>
-        <p>REMME Block Explorer allows to view information about blocks and transactions on the REMME blockchain.<br/> <Link to="/">Home page</Link> contains a list of the top 10 blocks and transactions. Pages <Link to="/blocks">View Blocks</Link> and <Link to="/transactions">View Txns</Link> contain lists with all items.</p>
+        <p>REMME Block Explorer allows to view information about blocks and transactions on the Remme blockchain.<br/> <Link to="/">Home page</Link> contains a list of the top 10 blocks and transactions. Pages <Link to="/blocks">View Blocks</Link> and <Link to="/transactions">View Txns</Link> contain lists with all items.</p>
         <br/>
         <h1>Blocks</h1>
         <p>Blocks are sorted by block_num and hold batches of transactions. This batch includes: the block height, the block hash, and several key parameters, described below:</p>
         <Table dataSource={dataSource1} columns={columns} pagination={false} />
         <br/>
         <h1>Transactions</h1>
-        <p>A transaction is a transfer of REMME value that is broadcast to the network and collected into blocks. Transactions are not encrypted, so it is possible to view every transaction. The payload data varies depending on the type of transaction and depends on the protobuf. Currently REMChain includes 3 transaction families (pub_key, account, AtomicSwap). <a target="_blank" href="https://docs.remme.io/remme-core/docs/family-pub-key.html?highlight=pub_key" rel="nofollow">The Public Key transaction family</a> provides storing public keys. <a href="https://docs.remme.io/remme-core/docs/family-account.html#account-transaction-family" target="_blank" rel="nofollow">The Account transaction family</a> executes logic for managing agents on the REMME blockchain. <a target="_blank" href="https://docs.remme.io/remme-core/docs/family-atomic-swap.html#atomic-swap-transaction-family" rel="nofollow">The Atomic Swap transaction family</a> provides means for universal exchange between two agents in separate chains.
+        <p>A transaction is a transfer of Remme value that is broadcast to the network and collected into blocks. Transactions are not encrypted, so it is possible to view every transaction. The payload data varies depending on the type of transaction and depends on the protobuf. Currently REMChain includes 3 transaction families (pub_key, account, AtomicSwap). <a target="_blank" href="https://docs.remme.io/remme-core/docs/family-pub-key.html?highlight=pub_key" rel="nofollow">The Public Key transaction family</a> provides storing public keys. <a href="https://docs.remme.io/remme-core/docs/family-account.html#account-transaction-family" target="_blank" rel="nofollow">The Account transaction family</a> executes logic for managing agents on the REMME blockchain. <a target="_blank" href="https://docs.remme.io/remme-core/docs/family-atomic-swap.html#atomic-swap-transaction-family" rel="nofollow">The Atomic Swap transaction family</a> provides means for universal exchange between two agents in separate chains.
 Key parameters of transactions:</p>
         <Table dataSource={dataSource2} columns={columns} pagination={false} />
 

@@ -10,7 +10,7 @@ class ClaimForm extends Component {
                 Claim Testnet Tokens
             </h2>
             <Divider />
-            <p align="center">To obtain test tokens interact with <a href="https://t.me/RemmeFaucetBot" target="_blank">the REMME Faucet (Testnet) bot.</a></p>
+            <p align="center">To obtain test tokens interact with <a href="https://t.me/RemmeFaucetBot" target="_blank">the Remme Faucet (Testnet) bot.</a></p>
         </Fragment>
     )
   }

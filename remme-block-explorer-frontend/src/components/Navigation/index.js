@@ -27,22 +27,18 @@ const NavigationItems = [
         key: 2
     }]
   },{
-    title: 'About REMME',
+    title: 'About Remme',
     icon: 'team',
     type: 'list',
     key: 3,
     items: [{
-        title: 'Platform Overview',
-        link: "https://remme.webflow.io/platform-overview",
+        title: 'PKI (d) Protocol ',
+        link: "https://remme.io/protocol-pkid",
         key: 1
-      },{
-        title: 'REMChain',
-        link: "https://remme.io/remchain",
-        key: 2
       },{
         title: 'Community',
         link: "https://remme.io/community",
-        key: 3
+        key: 2
       }]
     },{
       title: 'Resources',
@@ -51,7 +47,7 @@ const NavigationItems = [
       key: 4,
       items: [{
           title: 'Blog',
-          link: "https://medium.com/remme",
+          link: "https://remme.io/blog",
           key: 1
         },{
           title: 'Knowledge Base',
@@ -71,7 +67,7 @@ const NavigationItems = [
         key: 9,
       },{
         title: 'Join Tech Community',
-        link: 'https://remme.io/community#join-tech-community',
+        link: 'https://gitter.im/REMME-Tech',
         type: 'button',
         style: 'default',
         key: 6,
@@ -85,13 +81,9 @@ const NavigationItems = [
             link: "https://docs.remme.io/md/remme-block-explorer",
             key: 1
           },{
-            title: 'Claim Tokens',
-            link: "/claim",
-            key: 2
-          },{
             title: 'Share Your Feedback',
             link: "/feedback",
-            key: 3
+            key: 2
           }]
       }
 ];
